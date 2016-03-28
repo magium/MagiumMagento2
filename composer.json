@@ -1,0 +1,32 @@
+{
+  "name" : "magium/magento2",
+  "type": "library",
+  "description": "Magento 2-based functionality for the Magium test library",
+  "keywords": ["magento", "magento 2", "selenium", "webdriver", "testing"],
+  "homepage": "http://www.magiumlib.com/",
+  "license": "ASL-2.0",
+  "authors": [
+    {
+      "name": "Kevin Schroeder",
+      "email": "kschroeder@mirageworks.com",
+      "homepage": "http://magiumlib.com/",
+      "role": "Developer"
+    }
+  ],
+  "require" : {
+    "magium/magento": ">=0.5.1 <2.0.0"
+  },
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ],
+  "autoload" : {
+    "psr-4" : {
+      "Magium\\Magento2\\" : "lib/",
+      "Test\\Magium\\Magento2\\" : "tests/"
+    },
+    "files": [
+      "register.php"
+    ]
+  }
+}
