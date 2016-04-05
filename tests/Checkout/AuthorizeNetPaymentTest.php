@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Checkout;
+namespace Tests\Magium\Magento2\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Cart\AddItemToCart;
@@ -10,9 +10,16 @@ use Magium\Magento\Actions\Checkout\PaymentInformation\AuthorizeNet;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Customer\AccountHome;
 use Magium\Magento\Navigators\Customer\NavigateToOrder;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class AuthorizeNetPaymentTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testAuthorizeNet()
     {

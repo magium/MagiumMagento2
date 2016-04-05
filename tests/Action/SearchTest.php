@@ -1,16 +1,24 @@
 <?php
 
-namespace Tests\Magium\Magento\Action;
+namespace Tests\Magium\Magento2\Action;
 
 use Facebook\WebDriver\WebDriverKeys;
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Search\Search;
 use Magium\Magento\Extractors\Catalog\Search\SearchSuggestions;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class SearchTest extends AbstractMagentoTestCase
 {
     protected $fullSearch = 'shirt';
     protected $partialSearch = 'sh';
+
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testSearch()
     {

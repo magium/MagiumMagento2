@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Extractors;
+namespace Tests\Magium\Magento2\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Category\Category;
@@ -9,10 +9,18 @@ use Magium\Magento\Extractors\Catalog\Products\ProductGrid;
 use Magium\Magento\Extractors\Catalog\Products\ProductList;
 use Magium\Magento\Navigators\BaseMenu;
 use Magium\Magento\Navigators\Catalog\DefaultSimpleProductCategory;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class CategoryExtractorTest extends AbstractMagentoTestCase
 {
+
     protected $modeSelectorXpath = '//p[@class="view-mode"]//a[@class="list"]';
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testLayeredNavTestWorks()
     {

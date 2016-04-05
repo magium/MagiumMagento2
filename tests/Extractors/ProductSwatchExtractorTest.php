@@ -1,14 +1,21 @@
 <?php
 
-namespace Tests\Magium\Magento\Extractors;
+namespace Tests\Magium\Magento2\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Product\ConfigurableProductOptions;
 use Magium\Magento\Navigators\Catalog\DefaultConfigurableProduct;
 use Magium\Magento\Navigators\Catalog\DefaultConfigurableProductCategory;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class ProductSwatchExtractorTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testProductSwatchExtractor()
     {

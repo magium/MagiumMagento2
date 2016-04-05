@@ -1,13 +1,21 @@
 <?php
 
 
-namespace Tests\Magium\Magento\Admin\Order;
+namespace Tests\Magium\Magento2\Admin\Order;
 
 use Magium\Magento\Extractors\Admin\Order\BillingAddress;
+use Magium\Magento2\ConfigurationSwitcher;
 
 
 class BillingAddressTest extends \PHPUnit_Framework_TestCase
 {
+
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testExtractAddress()
     {

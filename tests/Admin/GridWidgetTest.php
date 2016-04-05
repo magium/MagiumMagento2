@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin;
+namespace Tests\Magium\Magento2\Admin;
 
 use Magium\Actions\WaitForPageLoaded;
 use Magium\Magento\AbstractMagentoTestCase;
@@ -9,9 +9,17 @@ use Magium\Magento\Actions\Admin\Widget\ClickActionButton;
 use Magium\Magento\Extractors\Admin\Widget\Attribute;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Navigators\Admin\Widget\Tab;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class GridWidgetTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
+
     public function testNavigateToProductPrices()
     {
         $this->getAction(Login::ACTION)->login();

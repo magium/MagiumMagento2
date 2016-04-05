@@ -1,19 +1,24 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin;
+namespace Tests\Magium\Magento2\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Navigators\Admin\AdminMenu;
+use Magium\Magento2\ConfigurationSwitcher;
 
-class AdminNavigationTest extends AbstractMagentoTestCase
+class AdminNavigationTest extends \Tests\Magium\Magento\Admin\AdminNavigationTest
 {
 
-    public function testNavigateToSystemConfiguration()
-    {
+    protected $navigateTo = 'Stores/Configuration';
+    protected $expectedTitle = 'Configuration / Settings / Stores / Magento Admin';
 
-        $this->getAction(Login::ACTION)->login();
-        $this->getNavigator(AdminMenu::NAVIGATOR)->navigateTo('System/Configuration');
-        self::assertEquals('Configuration / System / Magento Admin', $this->webdriver->getTitle());
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
     }
+
+
 }
