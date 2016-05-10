@@ -65,6 +65,11 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         [InstructionNavigator::INSTRUCTION_MOUSE_CLICK,  '//div[contains(concat(" ",normalize-space(@class)," ")," panel ")]/descendant::li/a[concat(" ",normalize-space(.)," ") = " {{Create an Account}} "]']
     ];
 
+    public $checkoutNavigationInstructions  = [
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//a[contains(concat(" ",normalize-space(@class)," ")," action ") and contains(concat(" ",normalize-space(@class)," ")," showcart ")]'],
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//button[@id="top-cart-btn-checkout"]']
+    ];
+
     public $registerFirstNameXpath           = '//input[@id="firstname"]';
     public $registerLastNameXpath            = '//input[@id="lastname"]';
     public $registerEmailXpath               = '//input[@id="email_address"]';
@@ -88,6 +93,18 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         $testCase->setTypePreference(
             'Magium\Magento\Navigators\Customer\AccountHome',
             'Magium\Magento2\Navigators\Customer\AccountHome'
+        );
+        $testCase->setTypePreference(
+            'Magium\Magento\Actions\Checkout\GuestCheckout',
+            'Magium\Magento2\Actions\Checkout\GuestCheckout'
+        );
+        $testCase->setTypePreference(
+            'Magium\Magento\Actions\Checkout\CustomerCheckout',
+            'Magium\Magento2\Actions\Checkout\CustomerCheckout'
+        );
+        $testCase->setTypePreference(
+            'Magium\Magento\Actions\Checkout\PaymentMethods\CashOnDelivery',
+            'Magium\Magento2\Actions\Checkout\PaymentMethods\CashOnDelivery'
         );
     }
 
