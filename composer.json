@@ -14,7 +14,7 @@
     }
   ],
   "require" : {
-    "magium/magento": ">=0.5.1 <2.0.0"
+    "magium/magento": ">=0.5.2 <2.0.0"
   },
   "repositories" : [ {
     "type" : "composer",
@@ -23,7 +23,7 @@
   "autoload" : {
     "psr-4" : {
       "Magium\\Magento2\\" : "lib/",
-      "Test\\Magium\\Magento2\\" : "tests/"
+      "Tests\\Magium\\Magento2\\" : "tests/"
     },
     "files": [
       "register.php"

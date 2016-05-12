@@ -1,15 +1,22 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin;
+namespace Tests\Magium\Magento2\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Actions\Admin\Tables\ClearTableFilters;
 use Magium\Magento\Actions\Admin\WaitForLoadingMask;
 use Magium\Magento\Navigators\Admin\AdminMenu;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class TestClearTableFilters extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testFilterClearsSuccessfully()
     {

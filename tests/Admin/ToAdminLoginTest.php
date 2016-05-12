@@ -1,14 +1,21 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin;
+namespace Tests\Magium\Magento2\Admin;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Extractors\Admin\Login\Messages;
 use Magium\Magento\Identities\Admin;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class ToAdminLoginTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testLoginAdmin()
     {

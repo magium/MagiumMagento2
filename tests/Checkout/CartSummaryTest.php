@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Checkout;
+namespace Tests\Magium\Magento2\Checkout;
 
 use Magium\Assertions\AbstractAssertion;
 use Magium\Magento\AbstractMagentoTestCase;
@@ -11,10 +11,17 @@ use Magium\Magento\Actions\Checkout\RegisterNewCustomerCheckout;
 use Magium\Magento\Actions\Checkout\Steps\BillingAddress;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
 use Magium\Magento\Extractors\Checkout\CartSummary;
+use Magium\Magento2\ConfigurationSwitcher;
 use Magium\WebDriver\WebDriver;
 
 class CartSummaryTest extends AbstractMagentoTestCase
 {
+    
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testGuestCheckout()
     {

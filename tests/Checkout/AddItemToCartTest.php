@@ -1,14 +1,21 @@
 <?php
 
-namespace Tests\Magium\Magento\Checkout;
+namespace Tests\Magium\Magento2\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Cart\AddItemToCart;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class AddItemToCartTest extends AbstractMagentoTestCase
 {
 
-    protected $categoryNavigation = 'Accessories/Eyewear';
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
+
+    protected $categoryNavigation = 'Gear/Bags';
     protected $categoryPageAddToCart = '//a[@title="Aviator Sunglasses"]/../descendant::button';
     protected $productPageAddToCart = '//a[@title="Aviator Sunglasses"]';
 

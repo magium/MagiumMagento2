@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Extractors;
+namespace Tests\Magium\Magento2\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Cart\AddItemToCart;
@@ -12,10 +12,17 @@ use Magium\Magento\Extractors\Customer\Order\Summary;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Customer\AccountHome;
 use Magium\Magento\Navigators\Customer\NavigateToOrder;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class CustomerOrderExtractorTest extends AbstractMagentoTestCase
 {
     protected $status = 'PENDING';
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testOrderExtractor()
     {

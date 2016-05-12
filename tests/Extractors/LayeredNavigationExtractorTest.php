@@ -1,12 +1,13 @@
 <?php
 
-namespace Tests\Magium\Magento\Extractors;
+namespace Tests\Magium\Magento2\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterTypes\PriceFilter;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\FilterValue;
 use Magium\Magento\Extractors\Catalog\LayeredNavigation\LayeredNavigation;
 use Magium\Magento\Navigators\BaseMenu;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
 {
@@ -19,6 +20,12 @@ class LayeredNavigationExtractorTest extends AbstractMagentoTestCase
     ];
     protected $hasSwatchImage = true;
     protected $hasSwatchShowsCount = true;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testDefaultValues()
     {

@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Magium\Magento\Extractors;
+namespace Tests\Magium\Magento2\Extractors;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Extractors\Catalog\Breadcrumb;
 use Magium\Magento\Navigators\BaseMenu;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class BreadCrumbTest extends AbstractMagentoTestCase
 {
@@ -14,6 +15,12 @@ class BreadCrumbTest extends AbstractMagentoTestCase
         'Home', 'Men'
     ];
     protected $crumbsText = 'HOME / MEN / SHIRTS';
+    
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testBreadCrumbText()
     {

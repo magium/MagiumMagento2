@@ -1,9 +1,17 @@
 <?php
 
-namespace Tests\Magium\Magento\Checkout;
+namespace Tests\Magium\Magento2\Checkout;
+
+use Magium\Magento2\ConfigurationSwitcher;
 
 class AbstractCheckoutTest extends \PHPUnit_Framework_TestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
     
     public function testStepAddedAndCanBeRetrieved()
     {

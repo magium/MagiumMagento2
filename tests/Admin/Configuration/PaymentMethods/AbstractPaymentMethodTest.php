@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin\Configuration\PaymentMethods;
+namespace Tests\Magium\Magento2\Admin\Configuration\PaymentMethods;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Configuration\AbstractSettingGroup;
@@ -9,10 +9,18 @@ use Magium\Magento\Actions\Admin\Configuration\SettingModifier;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Navigators\Admin\SystemConfiguration;
+use Magium\Magento2\ConfigurationSwitcher;
 use Magium\WebDriver\FastSelectElement;
 
 abstract class AbstractPaymentMethodTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
+
     protected function enablePaymentMethod($action, $id)
     {
         $this->getAction(Login::ACTION)->login();

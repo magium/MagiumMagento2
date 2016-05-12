@@ -1,15 +1,22 @@
 <?php
 
-namespace Tests\Magium\Magento\Checkout;
+namespace Tests\Magium\Magento2\Checkout;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Configuration\Enabler;
 use Magium\Magento\Actions\Admin\Login\Login;
 use Magium\Magento\Actions\Cart\AddItemToCart;
 use Magium\Magento\Actions\Checkout\GuestCheckout;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class SavedCCPaymentTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testSavedCC()
     {

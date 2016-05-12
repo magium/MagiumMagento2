@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin\Order;
+namespace Tests\Magium\Magento2\Admin\Order;
 
 use Facebook\WebDriver\WebDriverBy;
 use Magium\Magento\AbstractMagentoTestCase;
@@ -11,10 +11,17 @@ use Magium\Magento\Actions\Checkout\GuestCheckout;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Admin\Order;
 use Magium\Magento\Navigators\Admin\Widget\Tab;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class ShipTest extends AbstractMagentoTestCase
 {
 
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
     public function testShipOrder()
     {

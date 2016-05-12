@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin\Order;
+namespace Tests\Magium\Magento2\Admin\Order;
 
 use Magium\Magento\AbstractMagentoTestCase;
 use Magium\Magento\Actions\Admin\Login\Login;
@@ -15,9 +15,17 @@ use Magium\Magento\Extractors\Admin\Order\Totals;
 use Magium\Magento\Extractors\Admin\OrderInformationExtractor;
 use Magium\Magento\Extractors\Checkout\OrderId;
 use Magium\Magento\Navigators\Admin\Order;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class OrderInformationExtractorTest extends AbstractMagentoTestCase
 {
+
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
 
 
     public function testOrderExtraction()

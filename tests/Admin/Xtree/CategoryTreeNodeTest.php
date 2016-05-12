@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Magium\Magento\Admin\Xtree;
+namespace Tests\Magium\Magento2\Admin\Xtree;
 
 use Facebook\WebDriver\WebDriverSelect;
 use Magium\Magento\AbstractMagentoTestCase;
@@ -9,9 +9,17 @@ use Magium\Magento\Extractors\Admin\Widget\Attribute;
 use Magium\Magento\Extractors\Admin\Xtree\CategoryTreeNode;
 use Magium\Magento\Navigators\Admin\AdminMenu;
 use Magium\Magento\Navigators\Admin\Widget\Tab;
+use Magium\Magento2\ConfigurationSwitcher;
 
 class CategoryTreeNodeTest extends AbstractMagentoTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+        (new ConfigurationSwitcher($this))->configure();
+    }
+
     public function testCategoryTreeExtractor()
     {
         $this->getAction(Login::ACTION)->execute();
