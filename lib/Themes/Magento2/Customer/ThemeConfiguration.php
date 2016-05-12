@@ -20,4 +20,10 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $viewOrderLinkXpath = '//td[@data-th="{{Order #}}" and .="%s"]/../td[contains(concat(" ",normalize-space(@class)," ")," actions ")]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," view ")]';
 
     public $orderPageTitleContainsText = 'Order #';
+
+    public $orderShippingAddressBaseXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," box-order-shipping-address ")]/descendant::address';
+    public $orderBillingAddressBaseXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," box-order-billing-address ")]/descendant::address';
+
+    public $orderShippingMethod = '//div[contains(concat(" ",normalize-space(@class)," ")," box-order-shipping-method ")/descendant::div[contains(concat(" ",normalize-space(@class)," ")," box-content ")]/dt[contains(concat(" ",normalize-space(@class)," ")," title ")]';
+    public $orderPaymentMethod = '//div[contains(concat(" ",normalize-space(@class)," ")," box-order-billing-amethod ")descendant::div[contains(concat(" ",normalize-space(@class)," ")," box-content ")]/dt[contains(concat(" ",normalize-space(@class)," ")," title ")]';
 }

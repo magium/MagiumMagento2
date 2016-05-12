@@ -9,9 +9,16 @@ use Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface;
 use Magium\Magento2\Themes\Magento2\Checkout\ThemeConfiguration;
 use Magium\WebDriver\WebDriver;
 
-class BillingAddress extends \Magium\Magento\Actions\Checkout\Steps\BillingAddress
+class CustomerBillingAddress extends \Magium\Magento\Actions\Checkout\Steps\CustomerBillingAddress
 {
+
+    const ACTION = __CLASS__;
+
     protected $paymentMethod;
+
+    protected $clickUpdate = false;
+
+    protected $saveAddress = false;
 
     public function __construct(
         WebDriver $webdriver,
@@ -25,18 +32,26 @@ class BillingAddress extends \Magium\Magento\Actions\Checkout\Steps\BillingAddre
         $this->paymentMethod = $paymentMethod;
     }
 
+    public function saveAddress($save = true)
+    {
+        $this->saveAddress = $save;
+    }
 
     protected function preExecute()
     {
-        if ($this->shipToDifferentAddress) {
+        if ($this->shipToDifferentAddress || $this->enterNewAddress) {
             $theme = $this->theme;
             if ($theme instanceof ThemeConfiguration) {
                 $paymentMethod = $this->paymentMethod;
-                if ($paymentMethod instanceof \Magium\Magento2\Actions\Checkout\PaymentMethods\PaymentMethodInterface) {
+                if ($paymentMethod instanceof \Magium\Magento\Actions\Checkout\PaymentMethods\PaymentMethodInterface) {
                     $xpath = $theme->getUseDifferentBillingAddressXpath($paymentMethod->getId());
                     $element = $this->webdriver->byXpath($xpath);
-                    if ($element->getAttribute('selected') === null) {
+                    if ($element->getAttribute('checked') !== null) {
                         $element->click();
+                        $xpath = $theme->getBillingNewAddressXpath();
+                        $element = $this->webdriver->byXpath($xpath);
+                        $element->click();
+                        $this->clickUpdate = true;
                         return false;
                     }
                 } else {
@@ -53,6 +68,23 @@ class BillingAddress extends \Magium\Magento\Actions\Checkout\Steps\BillingAddre
 
     public function nextAction()
     {
+        if ($this->clickUpdate) {
+            $xpath = $this->theme->getBillingSaveAddressXpath();
+            $element = $this->webdriver->byXpath($xpath);
+            if ($this->saveAddress) {
+                if ($element->getAttribute('checked') === null) {
+                    $element->click();
+                }
+            } else {
+                if ($element->getAttribute('checked') !== null) {
+                    $element->click();
+                }
+            }
+
+            $xpath = $this->theme->getBillingUpdateButtonXpath();
+            $element = $this->webdriver->byXpath($xpath);
+            $element->click();
+        }
         return true;
     }
 

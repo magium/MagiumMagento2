@@ -6,6 +6,12 @@ use Magium\WebDriver\WebDriver;
 
 class ShippingAddress extends \Magium\Magento\Actions\Checkout\Steps\ShippingAddress
 {
+    protected $saveAddress = false;
+
+    public function saveAddress($save = true)
+    {
+        $this->saveAddress = $save;
+    }
 
     protected function preExecute()
     {
@@ -26,8 +32,17 @@ class ShippingAddress extends \Magium\Magento\Actions\Checkout\Steps\ShippingAdd
 
     public function nextAction()
     {
-        // Force a blur event
-        $this->webdriver->byXpath('//body')->click();
+        if ($this->enterNewAddress) {
+            // We are probably in the popup... I hope...
+            $checked = $this->webdriver->byXpath($this->theme->getSaveInAddressBookToggleXpath())->getAttribute('checked') != null;
+            if (($this->saveAddress && !$checked) || (!$this->saveAddress && $checked)) {
+                $this->webdriver->byXpath($this->theme->getSaveInAddressBookToggleXpath())->click();
+            }
+            $this->webdriver->byXpath($this->theme->getSaveShippingAddressButtonXpath())->click();
+        } else {
+            // Force a blur event
+            $this->webdriver->byXpath('//body')->click();
+        }
         return true;
     }
 

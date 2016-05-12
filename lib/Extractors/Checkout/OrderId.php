@@ -19,7 +19,7 @@ class OrderId extends Magento1OrderId
         ThemeConfiguration $themeConfiguration
 )
     {
-        parent::__construct($webDriver, $testCase, $theme);
+        parent::__construct($webDriver, $testCase, $themeConfiguration);
         $this->checkoutTheme = $themeConfiguration;
     }
 

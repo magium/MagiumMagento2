@@ -3,6 +3,7 @@
 namespace Magium\Magento2\Actions\Checkout;
 
 use Magium\Magento2\Actions\Checkout\Steps\BillingAddress;
+use Magium\Magento2\Actions\Checkout\Steps\CustomerBillingAddress;
 use Magium\Magento2\Actions\Checkout\Steps\LogInCustomer;
 use Magium\Magento2\Actions\Checkout\Steps\PaymentMethod;
 use Magium\Magento\Actions\Checkout\Steps\PlaceOrder;
@@ -25,7 +26,7 @@ class CustomerCheckout extends Magento1CustomerCheckout
         CheckoutStart $navigator,
         AbstractThemeConfiguration $theme,
         LogInCustomer $logInCustomer,
-        BillingAddress $billingAddress,
+        CustomerBillingAddress $billingAddress,
         ShippingAddress $shippingAddress,
         ShippingMethod $shippingMethod,
         PaymentMethod $paymentMethod,

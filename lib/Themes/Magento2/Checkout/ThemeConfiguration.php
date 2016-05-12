@@ -41,17 +41,21 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $placeOrderButtonXpath       = '//button[@type="submit" and contains(concat(" ",normalize-space(@class)," ")," action ") and contains(concat(" ",normalize-space(@class)," ")," checkout ") and not(@disabled)]';
 
-    public $billingFirstNameXpath      = '//input[@name="firstname"]';
-    public $billingLastNameXpath       = '//input[@name="lastname"]';
-    public $billingCompanyXpath        = '//input[@name="company"]';
-    public $billingEmailAddressXpath   = '//input[@name="email"]';
-    public $billingAddressXpath        = '//input[@name="street[0]"]';
-    public $billingAddress2Xpath       = '//input[@name="street[1]"]';
-    public $billingCityXpath           = '//input[@name="city"]';
-    public $billingRegionIdXpath       = '//select[@name="region_id"]/descendant::option[.="%s"]';
-    public $billingPostCodeXpath       = '//input[@name="postcode"]';
-    public $billingCountryIdXpath      = '//select[@name="country_id"]/descendant::option[@value="%s"]';
-    public $billingTelephoneXpath      = '//input[@name="telephone"]';
+    public $billingFirstNameXpath      = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="firstname"]';
+    public $billingLastNameXpath       = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="lastname"]';
+    public $billingCompanyXpath        = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="company"]';
+    public $billingEmailAddressXpath   = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="email"]';
+    public $billingAddressXpath        = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="street[0]"]';
+    public $billingAddress2Xpath       = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="street[1]"]';
+    public $billingCityXpath           = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="city"]';
+    public $billingRegionIdXpath       = '//fieldset[@id="billing-new-address-form"]/descendant::select[@name="region_id"]/descendant::option[.="%s"]';
+    public $billingPostCodeXpath       = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="postcode"]';
+    public $billingCountryIdXpath      = '//fieldset[@id="billing-new-address-form"]/descendant::select[@name="country_id"]/descendant::option[@value="%s"]';
+    public $billingTelephoneXpath      = '//fieldset[@id="billing-new-address-form"]/descendant::input[@name="telephone"]';
+
+    // Note, for the next two Xpaths, there are two elements that match this xpath.  They are both exactly the same.  I'm not sure why the second is there.
+    public $billingUpdateButtonXpath      = '//button[contains(concat(" ",normalize-space(@class)," "), " action-update ")]';
+    public $billingSaveAddressXpath       = '//input[@id="billing-save-in-address-book"]';
 
     public $useDifferentBillingAddressXpath = '//input[@id="billing-address-same-as-shipping-%s]';
     
@@ -70,10 +74,52 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $shippingNewAddressXpath       = '//button[contains(concat(" ",normalize-space(@class)," ")," action ") and contains(concat(" ",normalize-space(@class)," ")," action-show-popup ")]';
 
+    public $doNotUseBillingAddressForShipping = '//input[@id="billing-address-same-as-shipping-%s"]';
+
+    public $billingNewAddressXpath = '//select[@name="billing_address_id"]/descendant::option[.="{{New Address}}"]';
+
+    public $saveShippingAddressButtonXpath = '//div[@id="opc-new-shipping-address"]/../../descendant::button[contains(concat(" ",normalize-space(@class)," ")," action-save-address ")]';
+
+    public $saveInAddressBookToggleXpath = '//input[@id="shipping-save-in-address-book"]';
+
+    /**
+     * @return string
+     */
+    public function getSaveInAddressBookToggleXpath()
+    {
+        return $this->saveInAddressBookToggleXpath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSaveShippingAddressButtonXpath()
+    {
+        return $this->saveShippingAddressButtonXpath;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getBillingSaveAddressXpath()
+    {
+        return $this->translatePlaceholders($this->billingSaveAddressXpath);
+    }
+
+    /**
+     * @return string
+     */
+    public function getBillingUpdateButtonXpath()
+    {
+        return $this->translatePlaceholders($this->billingUpdateButtonXpath);
+    }
+
+
+
     public function getUseDifferentBillingAddressXpath($id)
     {
         $xpath = sprintf($this->doNotUseBillingAddressForShipping, $id);
-        return $xpath;
+        return $this->translatePlaceholders($xpath);
     }
 
     /**
