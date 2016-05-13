@@ -19,6 +19,7 @@ class ShippingAddress extends \Magium\Magento\Actions\Checkout\Steps\ShippingAdd
             if ($this->webdriver->elementExists($this->theme->getShippingNewAddressXpath(), WebDriver::BY_XPATH)) {
                 $element = $this->webdriver->byXpath($this->theme->getShippingNewAddressXpath());
                 $element->click();
+                $this->testCase->sleep('1s'); // Wait for screen to update
             }
             return false;
         }
@@ -39,6 +40,7 @@ class ShippingAddress extends \Magium\Magento\Actions\Checkout\Steps\ShippingAdd
                 $this->webdriver->byXpath($this->theme->getSaveInAddressBookToggleXpath())->click();
             }
             $this->webdriver->byXpath($this->theme->getSaveShippingAddressButtonXpath())->click();
+            $this->testCase->sleep('1s'); // Wait for screen to update
         } else {
             // Force a blur event
             $this->webdriver->byXpath('//body')->click();
