@@ -14,7 +14,7 @@ use Magium\Magento2\ConfigurationSwitcher;
 class CategoryExtractorTest extends AbstractMagentoTestCase
 {
 
-    protected $modeSelectorXpath = '//p[@class="view-mode"]//a[@class="list"]';
+    protected $modeSelectorXpath = '//div[@class="modes"]/a[@title="List"]';
 
     protected function setUp()
     {
@@ -62,7 +62,7 @@ class CategoryExtractorTest extends AbstractMagentoTestCase
         // This could fail if some details are missing.  So this is intended for a local test
         self::assertNotNull($products[0]->getTitle());
         self::assertNotNull($products[0]->getAddToCartElement());
-        self::assertNotNull($products[0]->getDescription()); // Product list has a description
+        // self::assertNotNull($products[0]->getDescription()); // Product list does not have a description in M2
         self::assertNotNull($products[0]->getLink());
         self::assertNotNull($products[0]->getImage());
         self::assertContains('$', $products[0]->getPrice());

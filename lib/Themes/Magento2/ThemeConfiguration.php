@@ -79,6 +79,49 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $registerSubmitXpath              = '//button[@type="submit" and contains(concat(" ",normalize-space(@class)," ")," action ") and contains(concat(" ",normalize-space(@class)," ")," submit ")]';
     public $myAccountTitle                  = 'My Account';
 
+    public $searchInputXpath                = '//input[@id="search"]';
+
+    public $searchSubmitXpath               = '//button[@type="submit" and contains(concat(" ",normalize-space(@class)," ")," search ")]';
+    public $searchSuggestionTextXpath        = '//div[@id="search_autocomplete"]/descendant::li[@role="option"][%d]/descendant::span[@class="qs-option-name"]';
+    public $searchSuggestionCountXpath       = '//div[@id="search_autocomplete"]/descendant::li[@role="option"][%d]/descendant::span[@class="amount"]';
+
+    public $viewModeAttributeName           = 'title';
+    public $productCollectionViewModeXpath   = '//div[contains(concat(" ",normalize-space(@class)," ")," modes ")]/descendant::*[contains(concat(" ",normalize-space(@class)," ")," active ") and contains(concat(" ",normalize-space(@class)," ")," modes-mode ")]';
+    public $productCollectionSortByXpath     = '//select[@id="sorter"]/descendant::option[@selected]';
+    public $productCollectionShowCountXpath  = '//select[@id="limiter"]/descendant::option[@selected]'; // dittos
+    public $productCollectionShowCountOptionsXpath  = '//select[@id="limiter"]/descendant::option';
+    public $productCollectionProductCountXpath = '//p[@id="toolbar-amount"]';
+
+    public $productGridBaseXpath             = '//div[contains(concat(" ",normalize-space(@class)," ")," products-grid ")]/descendant::li[%d]';
+    public $productGridDescriptionXpath      = '/*[.="no description in the grid view"]';
+    public $productGridTitleXpath            = '/descendant::a[contains(concat(" ",normalize-space(@class)," ")," product-item-link ")]';
+    public $productGridCompareLinkXpath      = '/descendant::div[@data-role="add-to-links"]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," tocompare ")]';
+    public $productGridImageXpath            = '/descendant::img[@class="product-image-photo"]';
+    public $productGridLinkXpath             = '/descendant::a[contains(concat(" ",normalize-space(@class)," ")," product-item-link ")]';
+    public $productGridOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    public $productGridPriceXpath            = '/descendant::div[contains(concat(" ",normalize-space(@class)," ")," price-final_price ")]/descendant::span[@class="price"]';
+    public $productGridWishlistLinkXpath     = '/descendant::div[@data-role="add-to-links"]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," towishlist ")]';
+    public $productGridAddToCartLinkXpath    = '/descendant::button[contains(concat(" ",normalize-space(@class)," ")," tocart ")]';
+
+    public $productListBaseXpath             = '//div[contains(concat(" ",normalize-space(@class)," ")," products-list ")]/descendant::li[%d]';
+    public $productListDescriptionXpath      = '/unknown';
+    public $productListTitleXpath            = '/descendant::a[contains(concat(" ",normalize-space(@class)," ")," product-item-link ")]';
+    public $productListCompareLinkXpath      = '/descendant::div[@data-role="add-to-links"]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," tocompare ")]';
+    public $productListImageXpath            = '/descendant::img[@class="product-image-photo"]';
+    public $productListLinkXpath             = '/descendant::a[contains(concat(" ",normalize-space(@class)," ")," product-item-link ")]';
+    public $productListOriginalPriceXpath    = '/descendant::div[@class="price-box"]/descendant::p[@class="old-price"]/descendant::*[@class="price"]';
+    public $productListPriceXpath            = '/descendant::div[contains(concat(" ",normalize-space(@class)," ")," price-final_price ")]/descendant::span[@class="price"]';
+    public $productListWishlistLinkXpath     = '/descendant::div[@data-role="add-to-links"]/descendant::a[contains(concat(" ",normalize-space(@class)," ")," towishlist ")]';
+    public $productListAddToCartLinkXpath    = '/descendant::button[contains(concat(" ",normalize-space(@class)," ")," tocart ")]';
+
+    public $layeredNavigationTestXpath       =  '//div[@id="narrow-by-list"]';
+
+    public $contactUsNameXpath = '//form[@id="contact-form"]/descendant::input[@id="name"]';
+    public $contactUsEmailXpath = '//form[@id="contact-form"]/descendant::input[@id="email"]';
+    public $contactUsTelephoneXpath = '//form[@id="contact-form"]/descendant::input[@id="telephone"]';
+    public $contactUsCommentXpath = '//form[@id="contact-form"]/descendant::textarea[@id="comment"]';
+    public $contactUsSubmitXpath = '//form[@id="contact-form"]/descendant::button';
+
     public function configure(AbstractTestCase $testCase)
     {
         parent::configure($testCase);

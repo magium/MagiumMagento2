@@ -9,7 +9,9 @@ use Magium\Magento\Actions\Checkout\CustomerCheckout;
 use Magium\Magento\Actions\Checkout\GuestCheckout;
 use Magium\Magento\Actions\Checkout\RegisterNewCustomerCheckout;
 use Magium\Magento\Actions\Checkout\Steps\BillingAddress;
+use Magium\Magento\Actions\Checkout\Steps\PlaceOrder;
 use Magium\Magento\Actions\Checkout\Steps\StepInterface;
+use Magium\Magento\Actions\Checkout\Steps\StopProcessing;
 use Magium\Magento\Extractors\Checkout\CartSummary;
 use Magium\Magento2\ConfigurationSwitcher;
 use Magium\WebDriver\WebDriver;
@@ -32,16 +34,17 @@ class CartSummaryTest extends AbstractMagentoTestCase
         /* @var $addToCart \Magium\Magento\Actions\Cart\AddItemToCart */
 
         $addToCart->addSimpleProductToCartFromCategoryPage();
+        $addToCart->addConfigurableItemToCartFromProductPage();
         $this->setPaymentMethod('CashOnDelivery');
         $guestCheckout = $this->getAction(GuestCheckout::ACTION);
         /* @var $guestCheckout \Magium\Magento\Actions\Checkout\GuestCheckout */
-
+        $guestCheckout->addStep($this->getAction(StopProcessing::ACTION), $this->getAction(PlaceOrder::ACTION));
         $guestCheckout->execute();
 
         $cartSummary = $this->getExtractor(CartSummary::EXTRACTOR);
         /* @var $cartSummary \Magium\Magento\Extractors\Checkout\CartSummary */
         self::assertNotNull($cartSummary->getGrandTotal());
-        self::assertCount(1, $cartSummary->getProducts());
+        self::assertCount(2, $cartSummary->getProducts());
     }
 
     public function testCustomerCheckout()
@@ -56,9 +59,8 @@ class CartSummaryTest extends AbstractMagentoTestCase
         $this->setPaymentMethod('CashOnDelivery');
         $customerCheckout= $this->getAction(CustomerCheckout::ACTION);
         /* @var $customerCheckout \Magium\Magento\Actions\Checkout\CustomerCheckout */
-
+        $customerCheckout->addStep($this->getAction(StopProcessing::ACTION), $this->getAction(PlaceOrder::ACTION));
         $customerCheckout->execute();
-
 
         $cartSummary = $this->getExtractor(CartSummary::EXTRACTOR);
         /* @var $cartSummary \Magium\Magento\Extractors\Checkout\CartSummary */
