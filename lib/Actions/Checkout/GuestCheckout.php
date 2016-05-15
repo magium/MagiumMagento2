@@ -3,6 +3,7 @@
 namespace Magium\Magento2\Actions\Checkout;
 
 use Magium\Magento2\Actions\Checkout\Steps\BillingAddress;
+use Magium\Magento2\Actions\Checkout\Steps\CustomerBillingAddress;
 use Magium\Magento2\Actions\Checkout\Steps\PaymentMethod;
 use Magium\Magento\Actions\Checkout\Steps\PlaceOrder;
 use Magium\Magento\Actions\Checkout\Steps\SelectGuestCheckout;
@@ -23,7 +24,7 @@ class GuestCheckout extends \Magium\Magento\Actions\Checkout\GuestCheckout
         CheckoutStart $navigator,
         AbstractThemeConfiguration $theme,
         SelectGuestCheckout $selectGuestCheckout,
-        BillingAddress $billingAddress,
+        CustomerBillingAddress $billingAddress,
         ShippingAddress $shippingAddress,
         ShippingMethod $shippingMethod,
         PaymentMethod $paymentMethod,
