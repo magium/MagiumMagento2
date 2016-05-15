@@ -122,6 +122,11 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $contactUsCommentXpath = '//form[@id="contact-form"]/descendant::textarea[@id="comment"]';
     public $contactUsSubmitXpath = '//form[@id="contact-form"]/descendant::button';
 
+
+    public $breadCrumbXpath                  = '//div[@class="breadcrumbs"]';
+    public $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
+    public $breadCrumbSelectorXpath = '/descendant::a[%d]';
+
     public function configure(AbstractTestCase $testCase)
     {
         parent::configure($testCase);

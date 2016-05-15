@@ -9,12 +9,12 @@ use Magium\Magento2\ConfigurationSwitcher;
 
 class BreadCrumbTest extends AbstractMagentoTestCase
 {
-    protected $category = 'Men/Shirts';
-    protected $baseFile = 'men.html';
+    protected $category = 'Men/Tops/Jackets';
+    protected $baseFile = 'jackets-men.html';
     protected $crumbs = [
-        'Home', 'Men'
+        'Home', 'Men', 'Tops'
     ];
-    protected $crumbsText = 'HOME / MEN / SHIRTS';
+    protected $crumbsText = 'Home Men Tops Jackets';
     
     protected function setUp()
     {
