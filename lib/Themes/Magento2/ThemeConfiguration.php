@@ -132,6 +132,11 @@ class ThemeConfiguration extends AbstractThemeConfiguration
         [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//div[@id="switcher-language-trigger"]/../descendant::ul[contains(concat(" ",normalize-space(@class)," ")," switcher-dropdown ")]/descendant::li[contains(concat(" ",normalize-space(@class)," ")," view-%s ")]'],
     ];
 
+    public $currencySwitcherInstructionsXpath  = [
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//div[@id="switcher-currency-trigger"]'],
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//div[@id="switcher-currency-trigger"]/../descendant::ul[contains(concat(" ",normalize-space(@class)," ")," switcher-dropdown ")]/descendant::li[contains(concat(" ",normalize-space(@class)," ")," currency-%s ")]'],
+    ];
+
     public function configure(AbstractTestCase $testCase)
     {
         parent::configure($testCase);
@@ -160,6 +165,22 @@ class ThemeConfiguration extends AbstractThemeConfiguration
             'Magium\Magento2\Actions\Checkout\PaymentMethods\CashOnDelivery'
         );
     }
+
+    /**
+     * @return array
+     */
+    public function getCurrencySwitcherInstructionsXpath($currency)
+    {
+        $xpaths = $this->currencySwitcherInstructionsXpath;
+        foreach ($xpaths as &$path) {
+            if (strpos($path[1], '%s') !== false) {
+                $path[1] = sprintf($path[1], $currency);
+            }
+        }
+        return $xpaths;
+    }
+
+
 
     /**
      * @return array

@@ -11,6 +11,8 @@ class StoreSwitcherNavigationTest extends \Tests\Magium\Magento\Navigation\Store
 
     protected function setUp()
     {
+        // Note, this requires adding a german store view to the default sample data.  Multiple currencies are
+        // no longer managed via store view
         parent::setUp();
         (new ConfigurationSwitcher($this))->configure();
     }
