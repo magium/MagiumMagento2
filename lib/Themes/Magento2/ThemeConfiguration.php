@@ -127,6 +127,11 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $breadCrumbMemberXpath = '/descendant::a[concat(" ",normalize-space(.)," ")=" {{%s}} "]';
     public $breadCrumbSelectorXpath = '/descendant::a[%d]';
 
+    public $storeSwitcherInstructionsXpath  = [
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//div[@id="switcher-language-trigger"]'],
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK, '//div[@id="switcher-language-trigger"]/../descendant::ul[contains(concat(" ",normalize-space(@class)," ")," switcher-dropdown ")]/descendant::li[contains(concat(" ",normalize-space(@class)," ")," view-%s ")]'],
+    ];
+
     public function configure(AbstractTestCase $testCase)
     {
         parent::configure($testCase);
