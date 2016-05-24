@@ -84,7 +84,6 @@ class CartSummaryTest extends AbstractMagentoTestCase
 
         $customerCheckout->execute();
 
-
         $cartSummary = $this->getExtractor(CartSummary::EXTRACTOR);
         /* @var $cartSummary \Magium\Magento\Extractors\Checkout\CartSummary */
         self::assertNotNull($cartSummary->getGrandTotal());

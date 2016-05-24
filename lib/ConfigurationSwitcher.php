@@ -18,6 +18,7 @@ class ConfigurationSwitcher
 
     public function configure()
     {
+        
         $this->testCase->switchThemeConfiguration('Magium\Magento2\Themes\Magento2\ThemeConfiguration');
         
     }
