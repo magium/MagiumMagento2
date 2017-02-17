@@ -5,6 +5,7 @@
   "keywords": ["magento", "magento 2", "selenium", "webdriver", "testing"],
   "homepage": "http://www.magiumlib.com/",
   "license": "ASL-2.0",
+
   "authors": [
     {
       "name": "Kevin Schroeder",
@@ -14,7 +15,7 @@
     }
   ],
   "require" : {
-    "magium/magento": ">=0.5.2 <2.0.0"
+    "magium/magento": "~0.6.0"
   },
   "repositories" : [ {
     "type" : "composer",
