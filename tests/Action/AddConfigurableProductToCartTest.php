@@ -2,15 +2,7 @@
 
 namespace Tests\Magium\Magento2\Action;
 
-use Magium\Magento\AbstractMagentoTestCase;
-use Magium\Magento\Actions\Cart\AddConfigurableProductToCart;
-use Magium\Magento\Navigators\BaseMenu;
-use Magium\Magento\Navigators\Cart\Cart;
-use Magium\Magento\Navigators\Catalog\DefaultConfigurableProduct;
-use Magium\Magento\Navigators\Catalog\DefaultConfigurableProductCategory;
-use Magium\Magento\Navigators\Catalog\Product;
 use Magium\Magento2\ConfigurationSwitcher;
-use Magium\WebDriver\WebDriver;
 
 class AddConfigurableProductToCartTest extends \Tests\Magium\Magento\Action\AddConfigurableProductToCartTest
 {
@@ -28,7 +20,8 @@ class AddConfigurableProductToCartTest extends \Tests\Magium\Magento\Action\AddC
     protected function setUp()
     {
         parent::setUp();
-        (new ConfigurationSwitcher($this))->configure();
+        $switcher = $this->get(ConfigurationSwitcher::class);
+        $switcher->configure();
     }
 
 }

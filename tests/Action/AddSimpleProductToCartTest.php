@@ -20,7 +20,8 @@ class AddSimpleProductToCartTest extends \Tests\Magium\Magento\Action\AddSimpleP
     protected function setUp()
     {
         parent::setUp();
-        (new ConfigurationSwitcher($this))->configure();
+        $switcher = $this->get(ConfigurationSwitcher::class);
+        $switcher->configure();
     }
 
 }
