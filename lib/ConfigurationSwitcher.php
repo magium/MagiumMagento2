@@ -3,6 +3,7 @@
 namespace Magium\Magento2;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento2\Themes\Magento2\ThemeConfiguration;
 
 class ConfigurationSwitcher
 {
@@ -19,7 +20,7 @@ class ConfigurationSwitcher
     public function configure()
     {
         
-        $this->testCase->switchThemeConfiguration('Magium\Magento2\Themes\Magento2\ThemeConfiguration');
+        $this->testCase->switchThemeConfiguration(ThemeConfiguration::class);
         
     }
 
