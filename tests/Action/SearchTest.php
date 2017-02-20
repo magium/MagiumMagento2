@@ -17,7 +17,8 @@ class SearchTest extends AbstractMagentoTestCase
     protected function setUp()
     {
         parent::setUp();
-        (new ConfigurationSwitcher($this))->configure();
+        $switcher = $this->get(ConfigurationSwitcher::class);
+        $switcher->configure();
     }
 
     public function testSearch()
