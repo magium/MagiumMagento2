@@ -15,7 +15,7 @@
     }
   ],
   "require" : {
-    "magium/magento": "~0.6.0"
+    "magium/magento": "~0.6"
   },
   "repositories" : [ {
     "type" : "composer",
