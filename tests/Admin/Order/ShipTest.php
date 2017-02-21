@@ -20,7 +20,7 @@ class ShipTest extends AbstractMagentoTestCase
     protected function setUp()
     {
         parent::setUp();
-        (new ConfigurationSwitcher($this))->configure();
+        $this->get(ConfigurationSwitcher::class)->configure();
     }
 
     public function testShipOrder()
