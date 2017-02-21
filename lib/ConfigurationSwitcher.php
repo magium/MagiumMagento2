@@ -3,6 +3,7 @@
 namespace Magium\Magento2;
 
 use Magium\Magento\AbstractMagentoTestCase;
+use Magium\Magento\Actions\Admin\Tables\ClearTableFilters;
 use Magium\Magento2\Themes\Magento2\ThemeConfiguration;
 
 class ConfigurationSwitcher
@@ -21,7 +22,10 @@ class ConfigurationSwitcher
     {
         
         $this->testCase->switchThemeConfiguration(ThemeConfiguration::class);
-        
+        $this->testCase->setTypePreference(
+            ClearTableFilters::class,
+            Actions\Admin\Tables\ClearTableFilters::class
+        );
     }
 
 }
