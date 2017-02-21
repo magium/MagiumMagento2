@@ -35,7 +35,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $shippingMethodFormXpath      = '//form[@id="co-shipping-method-form"]';
 
-    public $defaultShippingXpath        = '//input[@name="shipping_method"]';
+    public $defaultShippingXpath        = '//div[@id="checkout-shipping-method-load"]/descendant::input';
 
     public $opcContinueButtonXpath      = '//button[@data-role="opc-continue"]';
 
@@ -82,6 +82,7 @@ class ThemeConfiguration extends AbstractThemeConfiguration
 
     public $saveInAddressBookToggleXpath = '//input[@id="shipping-save-in-address-book"]';
 
+    public $shippingMethodContinueButtonXpath = '//div[@id="shipping-method-buttons-container"]/descendant::button';
     /**
      * @return string
      */
