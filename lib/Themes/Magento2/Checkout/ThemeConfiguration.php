@@ -4,6 +4,7 @@ namespace Magium\Magento2\Themes\Magento2\Checkout;
 
 
 use Magium\Magento\Themes\OnePageCheckout\AbstractThemeConfiguration;
+use Magium\Navigators\InstructionNavigator;
 
 class ThemeConfiguration extends AbstractThemeConfiguration
 {
@@ -61,9 +62,9 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     
     public $orderReceivedCompleteXpath = '//div[contains(concat(" ",normalize-space(@class)," ")," checkout-success ")]';
 
-    public $cartSummaryCheckoutProductLoopNameXpath = '(//*[contains(concat(" ",normalize-space(@class)," "), " product-item-name ")])[%d]';
+    public $cartSummaryCheckoutProductLoopNameXpath = '(//div[@id="opc-sidebar"]/descendant::*[contains(concat(" ",normalize-space(@class)," "), " product-item-name ")])[%d]';
 
-    public $cartSummaryCheckoutProductLoopPriceXpath = '(//*[contains(concat(" ",normalize-space(@class)," "), " cart-price ")])[%d]';
+    public $cartSummaryCheckoutProductLoopPriceXpath = '(//div[@id="opc-sidebar"]/descendant::*[contains(concat(" ",normalize-space(@class)," "), " cart-price ")])[%d]';
     public $cartSummaryCheckoutProductLoopQtyXpath = '(//div[contains(concat(" ",normalize-space(@class)," "), " details-qty ")]/span[contains(concat(" ",normalize-space(@class)," "), " value ")])[%d]';
 
     public $cartSummaryCheckoutSubTotal = '//tr[contains(concat(" ",normalize-space(@class)," "), " totals ") and contains(concat(" ",normalize-space(@class)," "), " sub ")]/descendant::span[contains(concat(" ",normalize-space(@class)," "), " price ")]';
@@ -83,6 +84,39 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $saveInAddressBookToggleXpath = '//input[@id="shipping-save-in-address-book"]';
 
     public $shippingMethodContinueButtonXpath = '//div[@id="shipping-method-buttons-container"]/descendant::button';
+
+    public $discountCodeNavigationInstructions = [
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK,  '//span[@id="block-discount-heading"]']
+    ];
+
+    public $discountCodeTextBoxXpath = '//input[@id="discount-code"]';
+
+    public $discountCodeButtonXpath = '//form[@id="discount-form"]/descendant::button[@type="submit"]';
+
+    /**
+     * @return array
+     */
+    public function getDiscountCodeNavigationInstructions()
+    {
+        return $this->discountCodeNavigationInstructions;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscountCodeTextBoxXpath()
+    {
+        return $this->discountCodeTextBoxXpath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscountCodeButtonXpath()
+    {
+        return $this->discountCodeButtonXpath;
+    }
+
     /**
      * @return string
      */
