@@ -86,7 +86,8 @@ class ThemeConfiguration extends AbstractThemeConfiguration
     public $shippingMethodContinueButtonXpath = '//div[@id="shipping-method-buttons-container"]/descendant::button';
 
     public $discountCodeNavigationInstructions = [
-        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK,  '//span[@id="block-discount-heading"]']
+        [InstructionNavigator::INSTRUCTION_MOUSE_MOVETO,  '//span[@id="block-discount-heading"]'],
+        [InstructionNavigator::INSTRUCTION_MOUSE_CLICK,  '//span[@id="block-discount-heading"]'],
     ];
 
     public $discountCodeTextBoxXpath = '//input[@id="discount-code"]';
